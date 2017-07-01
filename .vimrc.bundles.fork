@@ -1,0 +1,29 @@
+Bundle 'IndexedSearch'
+
+UnBundle 'reedes/vim-litecorrect'
+UnBundle 'reedes/vim-textobj-sentence'
+UnBundle 'reedes/vim-textobj-quote'
+UnBundle 'reedes/vim-wordy'
+
+UnBundle 'spf13/PIV'
+UnBundle 'arnaud-lb/vim-php-namespace'
+UnBundle 'beyondwords/vim-twig'
+
+
+UnBundle 'amirh/HTML-AutoCloseTag'
+UnBundle 'hail2u/vim-css3-syntax'
+UnBundle 'gorodinskiy/vim-coloresque'
+UnBundle 'tpope/vim-haml'
+UnBundle 'mattn/emmet-vim'
+
+UnBundle 'elzr/vim-json'
+UnBundle 'groenewege/vim-less'
+UnBundle 'pangloss/vim-javascript'
+UnBundle 'briancollins/vim-jst'
+UnBundle 'kchmck/vim-coffee-script'
+
+
+UnBundle 'tpope/vim-rails'
+
+UnBundle 'nathanaelkane/vim-indent-guides'
+UnBundle 'luochen1990/rainbow'

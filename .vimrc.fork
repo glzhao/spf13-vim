@@ -1,0 +1,108 @@
+nnoremap <silent> <F3> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+
+set confirm
+
+nnoremap ; :
+
+"colorscheme ir_black
+"colorscheme molokai
+"syntax enable
+"set background=light
+"set background=dark
+"colorscheme solarized
+
+"let g:molokai_original = 1
+"colorscheme molokai
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"--------------------------------------------------
+" => cscope
+"--------------------------------------------------
+if has("cscope")
+    """"""""""""" Standard cscope/vim boilerplate
+    if LINUX()
+        set csprg=/usr/bin/cscope
+    elseif OSX()
+        set csprg=/usr/local/bin/cscope
+    else
+        set csprg=cscope
+    endif
+
+    " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+    set cscopetag
+    " check cscope for definition of a symbol before checking ctags: set to 1
+    " if you want the reverse search order.
+    set csto=1
+    set nocscopeverbose
+    " add any cscope database in current directory
+    if filereadable("cscope.out")
+        cs add cscope.out
+    " else add the database pointed to by environment variable
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+
+    " show msg when any other cscope db added
+    set cscopeverbose
+    """"""""""""" My cscope/vim key mappings
+    " To do the first type of search, hit 'CTRL-\', followed by one of the
+    " cscope search types above (s,g,c,t,e,f,i,d).  The result of your cscope
+    " search will be displayed in the current window.  You can use CTRL-T to
+    " go back to where you were before the search.
+    "
+    nmap <Leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
+    nmap <Leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
+    nmap <Leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
+    nmap <Leader>ft :cs find t <C-R>=expand("<cword>")<CR><CR>
+    nmap <Leader>fe :cs find e <C-R>=expand("<cword>")<CR><CR>
+    nmap <Leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
+    nmap <Leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    nmap <Leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
+    """"""""""""" key map timeouts
+    "set ttimeoutlen=100
+endif
+
+augroup ft_c
+    autocmd!
+    autocmd Filetype c setlocal cindent shiftround
+augroup END
+
+augroup ft_cpp
+    autocmd!
+    autocmd Filetype cpp setlocal cindent shiftround
+augroup END
+
+" Markdown
+augroup ft_markdown
+    autocmd!
+    " Use <localLeader>1/2/3/4/5/6 to add headings
+    autocmd Filetype markdown nnoremap <buffer> <localLeader>1 I# <ESC>
+    autocmd Filetype markdown nnoremap <buffer> <localLeader>2 I## <ESC>
+    autocmd Filetype markdown nnoremap <buffer> <localLeader>3 I### <ESC>
+    autocmd Filetype markdown nnoremap <buffer> <localLeader>4 I#### <ESC>
+    autocmd Filetype markdown nnoremap <buffer> <localLeader>5 I##### <ESC>
+    autocmd Filetype markdown nnoremap <buffer> <localLeader>6 I###### <ESC>
+    " Use <LocalLeader>b to add blockquotes in normal and visual mode
+    autocmd Filetype markdown nnoremap <buffer> <localLeader>b I> <ESC>
+    autocmd Filetype markdown vnoremap <buffer> <localLeader>b :s/^/> /<CR>
+    " Use <localLeader>ul and <localLeader>ol to add list symbols in visual mode
+    autocmd Filetype markdown vnoremap <buffer> <localLeader>ul :s/^/* /<CR>
+    autocmd Filetype markdown vnoremap <buffer> <LocalLeader>ol :s/^/\=(line(".")-line("'<")+1).'. '/<CR>
+    " Use <localLeader>e1/2/3 to add emphasis symbols
+    autocmd Filetype markdown nnoremap <buffer> <localLeader>e1 I*<ESC>A*<ESC>
+    autocmd Filetype markdown nnoremap <buffer> <localLeader>e2 I**<ESC>A**<ESC>
+    autocmd Filetype markdown nnoremap <buffer> <localLeader>e3 I***<ESC>A***<ESC>
+augroup END
+
+" Python
+augroup ft_python
+    autocmd!
+    au FileType python setlocal smartindent expandtab shiftwidth=4 tabstop=4 softtabstop=4
+    au Filetype python setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+
+    au BufRead *.py setlocal efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+
+    " code folder
+    "autocmd FileType python setlocal foldmethod=indent
+    "set foldlevel=99 "默认展开所有代码
+augroup END
