@@ -1,9 +1,28 @@
 Bundle 'IndexedSearch'
+Bundle 'vim-scripts/VisIncr'
+Bundle 'TaskList.vim'
 
-UnBundle 'reedes/vim-litecorrect'
-UnBundle 'reedes/vim-textobj-sentence'
-UnBundle 'reedes/vim-textobj-quote'
-UnBundle 'reedes/vim-wordy'
+" Color schemes
+    Bundle 'ajmwagar/vim-deus'
+    Bundle 'tomasr/molokai'
+    Bundle 'phd'
+    "need vim with lua
+    "Bundle 'jeaye/color_coded'"
+
+"Bundle 'fholgado/minibufexpl'
+" Program
+    Bundle 'SingleCompile'
+    Bundle 'google.vim'
+
+
+if !exists("g:tax_disable_showmarks")
+    Bundle 'ShowMarks'
+endif
+
+"UnBundle 'reedes/vim-litecorrect'
+"UnBundle 'reedes/vim-textobj-sentence'
+"UnBundle 'reedes/vim-textobj-quote'
+"UnBundle 'reedes/vim-wordy'
 
 UnBundle 'spf13/PIV'
 UnBundle 'arnaud-lb/vim-php-namespace'
@@ -22,8 +41,6 @@ UnBundle 'pangloss/vim-javascript'
 UnBundle 'briancollins/vim-jst'
 UnBundle 'kchmck/vim-coffee-script'
 
-
 UnBundle 'tpope/vim-rails'
 
 UnBundle 'nathanaelkane/vim-indent-guides'
-UnBundle 'luochen1990/rainbow'

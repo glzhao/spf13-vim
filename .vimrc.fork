@@ -1,110 +1,325 @@
-nnoremap <silent> <F3> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+" Key Mapping {
+    " Strip all trailing whitespace in the current file
+    nnoremap <silent> <F3> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
-set confirm
+    "Fast Ex command
+    nnoremap ; :
 
-nnoremap ; :
+    " Easymotion
+    " <Leader><Leader>
 
-set mouse=
+    " Ctrlp
+    " nnoremap <silent> <D-t> :CtrlP<CR>
+    " nnoremap <silent> <D-r> :CtrlPMRU<CR>
+    " nnoremap <Leader>fu :CtrlPFunky<Cr>
 
-"colorscheme ir_black
-"colorscheme molokai
-"syntax enable
-"set background=light
-"set background=dark
-"colorscheme solarized
+    " nerdtree
+    " map <C-e> <plug>NERDTreeTabsToggle<CR>
+    " map <leader>e :NERDTreeFind<CR>
+    " nmap <leader>nt :NERDTreeFind<CR>
 
-"let g:molokai_original = 1
-"colorscheme molokai
+    " UndoTree
+    " nnoremap <Leader>u :UndotreeToggle<CR>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"--------------------------------------------------
-" => cscope
-"--------------------------------------------------
-if has("cscope")
-    """"""""""""" Standard cscope/vim boilerplate
-    if LINUX()
-        set csprg=/usr/bin/cscope
-    elseif OSX()
-        set csprg=/usr/local/bin/cscope
-    else
-        set csprg=cscope
-    endif
+    " tagbar
+    "nnoremap <silent> <leader>tt :TagbarToggle<CR>
 
-    " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
-    set cscopetag
-    " check cscope for definition of a symbol before checking ctags: set to 1
-    " if you want the reverse search order.
-    set csto=1
-    set nocscopeverbose
-    " add any cscope database in current directory
-    if filereadable("cscope.out")
-        cs add cscope.out
-    " else add the database pointed to by environment variable
-    elseif $CSCOPE_DB != ""
-        cs add $CSCOPE_DB
-    endif
+    " TaskList
+    "map <silent>tl :TaskList<CR>
 
-    " show msg when any other cscope db added
-    set cscopeverbose
-    """"""""""""" My cscope/vim key mappings
-    " To do the first type of search, hit 'CTRL-\', followed by one of the
-    " cscope search types above (s,g,c,t,e,f,i,d).  The result of your cscope
-    " search will be displayed in the current window.  You can use CTRL-T to
-    " go back to where you were before the search.
+    " Singlecompile
+    "nmap <F9> :SCCompileRun<cr>
+
+    " mileszs/ack.vim
+    " nnoremap <Leader>a :ack_cmd!<Space>
+
+    " Ultisnips
+    "let g:UltiSnipsExpandTrigger = '<C-j>'
+    "let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+    "let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+
+    " Easier moving in tabs and windows
+    "map <C-J> <C-W>j<C-W>_
+    "map <C-K> <C-W>k<C-W>_
+    "map <C-L> <C-W>l<C-W>_
+    "map <C-H> <C-W>h<C-W>_
     "
-    nmap <Leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
-    nmap <Leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap <Leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap <Leader>ft :cs find t <C-R>=expand("<cword>")<CR><CR>
-    nmap <Leader>fe :cs find e <C-R>=expand("<cword>")<CR><CR>
-    nmap <Leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
-    nmap <Leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nmap <Leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
-    """"""""""""" key map timeouts
-    "set ttimeoutlen=100
-endif
+    " The default mappings for editing and applying the spf13 configuration
+    " are <leader>ev and <leader>sv respectively. Change them to your preference
+    " by adding the following to your .vimrc.before.local file:
+    "   let g:spf13_edit_config_mapping='<leader>ec'
+    "   let g:spf13_apply_config_mapping='<leader>sc'
 
-augroup ft_c
-    autocmd!
-    autocmd Filetype c setlocal cindent shiftround
-augroup END
+    " Yank from the cursor to the end of the line, to be consistent with C and D.
+    "nnoremap Y y$
 
-augroup ft_cpp
-    autocmd!
-    autocmd Filetype cpp setlocal cindent shiftround
-augroup END
+    " Code folding options
+    "nmap <leader>f0 :set foldlevel=0<CR>
+    "nmap <leader>f1 :set foldlevel=1<CR>
+    " ...
+    "nmap <leader>f9 :set foldlevel=9<CR>
 
-" Markdown
-augroup ft_markdown
-    autocmd!
-    " Use <localLeader>1/2/3/4/5/6 to add headings
-    autocmd Filetype markdown nnoremap <buffer> <localLeader>1 I# <ESC>
-    autocmd Filetype markdown nnoremap <buffer> <localLeader>2 I## <ESC>
-    autocmd Filetype markdown nnoremap <buffer> <localLeader>3 I### <ESC>
-    autocmd Filetype markdown nnoremap <buffer> <localLeader>4 I#### <ESC>
-    autocmd Filetype markdown nnoremap <buffer> <localLeader>5 I##### <ESC>
-    autocmd Filetype markdown nnoremap <buffer> <localLeader>6 I###### <ESC>
-    " Use <LocalLeader>b to add blockquotes in normal and visual mode
-    autocmd Filetype markdown nnoremap <buffer> <localLeader>b I> <ESC>
-    autocmd Filetype markdown vnoremap <buffer> <localLeader>b :s/^/> /<CR>
-    " Use <localLeader>ul and <localLeader>ol to add list symbols in visual mode
-    autocmd Filetype markdown vnoremap <buffer> <localLeader>ul :s/^/* /<CR>
-    autocmd Filetype markdown vnoremap <buffer> <LocalLeader>ol :s/^/\=(line(".")-line("'<")+1).'. '/<CR>
-    " Use <localLeader>e1/2/3 to add emphasis symbols
-    autocmd Filetype markdown nnoremap <buffer> <localLeader>e1 I*<ESC>A*<ESC>
-    autocmd Filetype markdown nnoremap <buffer> <localLeader>e2 I**<ESC>A**<ESC>
-    autocmd Filetype markdown nnoremap <buffer> <localLeader>e3 I***<ESC>A***<ESC>
-augroup END
+    " Tabularize
+    "nmap <Leader>a& :Tabularize /&<CR>
+    "vmap <Leader>a& :Tabularize /&<CR>
+    "nmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
+    "vmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
+    "nmap <Leader>a=> :Tabularize /=><CR>
+    "vmap <Leader>a=> :Tabularize /=><CR>
+    "nmap <Leader>a: :Tabularize /:<CR>
+    "vmap <Leader>a: :Tabularize /:<CR>
+    "nmap <Leader>a:: :Tabularize /:\zs<CR>
+    "vmap <Leader>a:: :Tabularize /:\zs<CR>
+    "nmap <Leader>a, :Tabularize /,<CR>
+    "vmap <Leader>a, :Tabularize /,<CR>
+    "nmap <Leader>a,, :Tabularize /,\zs<CR>
+    "vmap <Leader>a,, :Tabularize /,\zs<CR>
+    "nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+    "vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 
-" Python
-augroup ft_python
-    autocmd!
-    au FileType python setlocal smartindent expandtab shiftwidth=4 tabstop=4 softtabstop=4
-    au Filetype python setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+    " Session List
+    "nmap <leader>sl :SessionList<CR>
+    "nmap <leader>ss :SessionSave<CR>
+    "nmap <leader>sc :SessionClose<CR>
 
-    au BufRead *.py setlocal efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+    " Fugitive
+    " nnoremap <silent> <leader>gs :Gstatus<CR>
+    " nnoremap <silent> <leader>gd :Gdiff<CR>
+    " nnoremap <silent> <leader>gc :Gcommit<CR>
+    " nnoremap <silent> <leader>gb :Gblame<CR>
+    " nnoremap <silent> <leader>gl :Glog<CR>
+    " nnoremap <silent> <leader>gp :Git push<CR>
+    " nnoremap <silent> <leader>gr :Gread<CR>
+    " nnoremap <silent> <leader>gw :Gwrite<CR>
+    " nnoremap <silent> <leader>ge :Gedit<CR>
+    " nnoremap <silent> <leader>gi :Git add -p %<CR>
+    " nnoremap <silent> <leader>gg :SignifyToggle<CR>
 
-    " code folder
-    "autocmd FileType python setlocal foldmethod=indent
-    "set foldlevel=99 "默认展开所有代码
-augroup END
+    " Find merge conflict markers
+    "map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+
+    " Change Working Directory to that of the current file
+    "cmap cwd lcd %:p:h
+    "cmap cd. lcd %:p:h
+
+    " Visual shifting (does not exit Visual mode)
+    "vnoremap < <gv
+    "vnoremap > >gv
+
+    " Allow using the repeat operator with a visual selection (!)
+    "vnoremap . :normal .<CR>
+
+    " For when you forget to sudo.. Really Write the file.
+    "cmap w!! w !sudo tee % >/dev/null
+
+    " Adjust viewports to the same size
+    "map <Leader>= <C-w>=
+
+    " Map <Leader>ff to display all lines with keyword under cursor
+    " and ask which one to jump to
+    "nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+
+    " Easier horizontal scrolling
+    "map zl zL
+    "map zh zH
+
+    " Easier formatting
+    "nnoremap <silent> <leader>q gwip
+
+    " fullscreen mode for GVIM and Terminal, need 'wmctrl' in you PATH
+    "map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
+
+    "cabbr %% <C-R>=expand('%:p:h')<CR>
+
+    " Keep the cursor in place while joining lines
+    "nnoremap J mzJ`z
+" }
+
+" General {
+    set modeline                    " Allow vim options to be embedded in files;
+    set confirm                     " Y-N-C prompt if closing with unsaved changes.
+    set noerrorbells novisualbell t_vb= " No sound on errors
+    set mouse=                      " disable mouse
+
+    set timeoutlen=500              " Time to wait for a command
+" }
+
+" Vim User Interface {
+    set linebreak                   " don't wrap textin the middle of a word
+
+    set formatoptions+=rnlmM        " Optimize format options
+
+    set title                       " show title in console title bar
+    set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)\ -\ %{v:servername}
+
+    " Set column and line cursor
+    autocmd WinLeave * set nocursorline nocursorcolumn
+    autocmd WinEnter * set cursorline cursorcolumn
+
+    autocmd BufWinLeave *.* silent! mkview " Make Vim save view (state) (folds, cursor, etc)
+    autocmd BufWinEnter *.* silent! loadview " Make Vim load view (state) (folds, cursor, etc)
+" }
+
+" Platform and encoding Configuration {
+    set encoding=utf-8
+    "chinese is gb2313 in unix, cp936 in windows
+    set fileencodings=ucs-bom,utf-8-bom,utf-8,chinese,gb18030,big5,euc-jp,sjis,euc-kr,ucs-2le,latin1
+    let termencoding=substitute($LANG, "[a-zA-Z_-]*\.", "", "")  " set term encoding according to system locale
+    set fileformats=unix,mac,dos    " Auto detect the file formats
+
+    "set smartindent        " use smart indent if there is no indent file
+    "set cindent
+    "set shiftround			" Round indent to multiple of 'shiftwidth, used for cindent, >>, <<, etc
+
+    " Ignore these files when auto completing
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*    " for Linux/MacOSX
+    set wildignore+=.git\*,.hg\*,.svn\*        " for Windows
+    set wildignore+=*.o,*.obj,.git,*.pyc
+" }
+
+" Search Related {
+    " Keep search matches in the middle of the window
+    nnoremap n nzzzv
+    nnoremap N Nzzzv
+    nnoremap * *zzzv
+    nnoremap # #zzzv
+    nnoremap g* g*zzzv
+    nnoremap g# g#zzzv
+" }
+
+" Singlecompile {
+    "let g:molokai_original = 1
+    set background=dark
+    "set background=light
+    "colorscheme molokai
+    "colorscheme phd
+    "color ir_black
+    "colorscheme solarized
+    color deus
+    "color peaksea
+    "color fruity
+" }
+
+" Singlecompile {
+    nmap <F9> :SCCompileRun<cr>
+" }
+
+" TaskList {
+    map <silent>tl :TaskList<CR>
+" }
+
+" mileszs/ack.vim {
+    if executable('ag')
+        let ack_cmd = 'ag %s --nocolor -l -g ""'
+    elseif executable('ack-grep')
+        let ack_cmd = 'ack-grep %s --nocolor -f'
+    elseif executable('ack')
+        let ack_cmd = 'ack %s --nocolor -f'
+    " On Windows use "dir" as fallback command.
+    elseif WINDOWS()
+        let ack_cmd = 'dir %s /-n /b /s /a-d'
+    else
+        let ack_cmd = 'find %s -type f'
+    endif
+
+    if executable('ack-grep') || executable('ack')
+        nnoremap <Leader>a :ack_cmd!<Space>
+    endif
+" }
+
+" ShowMarks {
+    let showmarks_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    " Don't leave on by default, use :ShowMarksOn to enable
+    let g:showmarks_enable = 1
+    " For marks a-z
+    highlight ShowMarksHLl gui=bold guibg=LightBlue guifg=Blue
+    " For marks A-Z
+    highlight ShowMarksHLu gui=bold guibg=LightRed guifg=DarkRed
+    " For all other marks
+    highlight ShowMarksHLo gui=bold guibg=LightYellow guifg=DarkYellow
+    " For multiple marks on the same line.
+    highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
+" }
+
+" cscope {
+    if has("cscope")
+        """"""""""""" Standard cscope/vim boilerplate
+        if LINUX()
+            set csprg=/usr/bin/cscope
+        elseif OSX()
+            set csprg=/usr/local/bin/cscope
+        else
+            set csprg=cscope
+        endif
+
+        " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+        set cscopetag
+        " check cscope for definition of a symbol before checking ctags: set to 1
+        " if you want the reverse search order.
+        set csto=1
+        set nocscopeverbose
+        " add any cscope database in current directory
+        if filereadable("cscope.out")
+            cs add cscope.out
+        " else add the database pointed to by environment variable
+        elseif $CSCOPE_DB != ""
+            cs add $CSCOPE_DB
+        endif
+
+        " show msg when any other cscope db added
+        set cscopeverbose
+        """"""""""""" My cscope/vim key mappings
+        " To do the first type of search, hit 'CTRL-\', followed by one of the
+        " cscope search types above (s,g,c,t,e,f,i,d).  The result of your cscope
+        " search will be displayed in the current window.  You can use CTRL-T to
+        " go back to where you were before the search.
+        "
+        nmap <Leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
+        nmap <Leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
+        nmap <Leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
+        nmap <Leader>ft :cs find t <C-R>=expand("<cword>")<CR><CR>
+        nmap <Leader>fe :cs find e <C-R>=expand("<cword>")<CR><CR>
+        nmap <Leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
+        nmap <Leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+        nmap <Leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
+        """"""""""""" key map timeouts
+        "set ttimeoutlen=100
+    endif
+" }
+
+" Markdown {
+    augroup ft_markdown
+        autocmd!
+        " Use <localLeader>1/2/3/4/5/6 to add headings
+        autocmd Filetype markdown nnoremap <buffer> <localLeader>1 I# <ESC>
+        autocmd Filetype markdown nnoremap <buffer> <localLeader>2 I## <ESC>
+        autocmd Filetype markdown nnoremap <buffer> <localLeader>3 I### <ESC>
+        autocmd Filetype markdown nnoremap <buffer> <localLeader>4 I#### <ESC>
+        autocmd Filetype markdown nnoremap <buffer> <localLeader>5 I##### <ESC>
+        autocmd Filetype markdown nnoremap <buffer> <localLeader>6 I###### <ESC>
+        " Use <LocalLeader>b to add blockquotes in normal and visual mode
+        autocmd Filetype markdown nnoremap <buffer> <localLeader>b I> <ESC>
+        autocmd Filetype markdown vnoremap <buffer> <localLeader>b :s/^/> /<CR>
+        " Use <localLeader>ul and <localLeader>ol to add list symbols in visual mode
+        autocmd Filetype markdown vnoremap <buffer> <localLeader>ul :s/^/* /<CR>
+        autocmd Filetype markdown vnoremap <buffer> <LocalLeader>ol :s/^/\=(line(".")-line("'<")+1).'. '/<CR>
+        " Use <localLeader>e1/2/3 to add emphasis symbols
+        autocmd Filetype markdown nnoremap <buffer> <localLeader>e1 I*<ESC>A*<ESC>
+        autocmd Filetype markdown nnoremap <buffer> <localLeader>e2 I**<ESC>A**<ESC>
+        autocmd Filetype markdown nnoremap <buffer> <localLeader>e3 I***<ESC>A***<ESC>
+    augroup END
+" }
+
+" Python {
+    augroup ft_python
+        autocmd!
+        au FileType python setlocal smartindent
+        au Filetype python setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+
+        au BufRead *.py setlocal efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+
+        " code folder
+        "autocmd FileType python setlocal foldmethod=indent
+        "set foldlevel=99 "默认展开所有代码
+    augroup END
+" }
