@@ -2,5 +2,5 @@ if !exists("g:spf13_bundle_groups")
     " use youcompleteme if system has clang support 
     " use neocomplete if vim suppport lua 
     " use neocomplcache default 
-    let g:spf13_bundle_groups=['general', 'writing', 'programming', 'neocomplcache', 'programming', 'python', 'go', 'misc',]
+    let g:spf13_bundle_groups=['general', 'writing', 'programming', 'neocomplcache', 'programming', 'python', 'go', 'misc']
 endif
