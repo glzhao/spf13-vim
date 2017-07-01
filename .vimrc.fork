@@ -4,6 +4,8 @@ set confirm
 
 nnoremap ; :
 
+set mouse=
+
 "colorscheme ir_black
 "colorscheme molokai
 "syntax enable
