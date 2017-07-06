@@ -104,6 +104,16 @@
     " nnoremap <silent> <leader>gi :Git add -p %<CR>
     " nnoremap <silent> <leader>gg :SignifyToggle<CR>
 
+    " bufexplorer
+    "To start exploring in the current window, use: >
+    " <Leader>be   or   :BufExplorer   or   Your custom key mapping
+    "To toggle bufexplorer on or off in the current window, use: >
+    " <Leader>bt   or   :ToggleBufExplorer   or   Your custom key mapping
+    "To start exploring in a newly split horizontal window, use: >
+    " <Leader>bs   or   :BufExplorerHorizontalSplit   or   Your custom key mapping
+    "To start exploring in a newly split vertical window, use: >
+    " <Leader>bv   or   :BufExplorerVerticalSplit   or   Your custom key mapping
+
     " if count(g:spf13_bundle_groups, 'go')
     " au FileType go nmap <Leader>s <Plug>(go-implements)
     " au FileType go nmap <Leader>i <Plug>(go-info)
