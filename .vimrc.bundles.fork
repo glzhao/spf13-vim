@@ -21,10 +21,14 @@ if !exists("g:tax_disable_showmarks")
     Bundle 'ShowMarks'
 endif
 
+Bundle "terryma/vim-expand-region"
+
 "UnBundle 'reedes/vim-litecorrect'
 "UnBundle 'reedes/vim-textobj-sentence'
 "UnBundle 'reedes/vim-textobj-quote'
 "UnBundle 'reedes/vim-wordy'
+
+UnBundle 'klen/python-mode'
 
 UnBundle 'spf13/PIV'
 UnBundle 'arnaud-lb/vim-php-namespace'

@@ -125,6 +125,16 @@
     " au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
     " au FileType go nmap <leader>co <Plug>(go-coverage)
 
+    " terryma/vim-expand-region
+    " select words with different 'v' time in visual mode
+    vmap v <Plug>(expand_region_expand)
+    vmap <C-v> <Plug>(expand_region_shrink)
+
+    " replace selected words
+    " 1. search key words with /
+    " 2. cgn/cgN/gU replace first one
+    " 3. n. repeat
+
     " Change Working Directory to that of the current file
     "cmap cwd lcd %:p:h
     "cmap cd. lcd %:p:h
@@ -239,6 +249,7 @@
 " }
 
 " Singlecompile {
+    nmap <F9> :SCCompileRun<cr>
     "let g:molokai_original = 1
     set background=dark
     "set background=light
@@ -249,10 +260,6 @@
     color deus
     "color peaksea
     "color fruity
-" }
-
-" Singlecompile {
-    nmap <F9> :SCCompileRun<cr>
 " }
 
 " TaskList {
