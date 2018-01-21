@@ -12,6 +12,7 @@ Bundle 'jlanzarotta/bufexplorer'
     "Bundle 'jeaye/color_coded'"
 
 "Bundle 'fholgado/minibufexpl'
+"Bundle 'sorah/presen.vim'
 " Program
     Bundle 'SingleCompile'
     Bundle 'google.vim'

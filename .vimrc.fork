@@ -213,6 +213,22 @@
     set title                       " show title in console title bar
     set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)\ -\ %{v:servername}
 
+    " Set up gvim tab labels
+    set guitablabel=%m%N:%t\[%{tabpagewinnr(v:lnum)}\]
+    set guitabtooltip=%F            " Set gvim tab tooltips with every buffer name
+
+    "set magic			" changes special characters in search patterns (default)
+
+    "set smartindent        " use smart indent if there is no indent file
+    "set cindent
+    "set shiftround			" Round indent to multiple of 'shiftwidth, used for cindent, >>, <<, etc
+    " Round indent to multiple of 'shiftwidth, used for cindent, >>, <<, etc
+    "set shiftround shiftwidth=4
+
+    " Virtual editing means that the cursor can be positioned where there is
+    " no actual character. could let cursor move past the last char in <C-v> mode
+    "set virtualedit=block
+
     " Set column and line cursor
     autocmd WinLeave * set nocursorline nocursorcolumn
     autocmd WinEnter * set cursorline cursorcolumn
@@ -227,10 +243,6 @@
     set fileencodings=ucs-bom,utf-8-bom,utf-8,chinese,gb18030,big5,euc-jp,sjis,euc-kr,ucs-2le,latin1
     let termencoding=substitute($LANG, "[a-zA-Z_-]*\.", "", "")  " set term encoding according to system locale
     set fileformats=unix,mac,dos    " Auto detect the file formats
-
-    "set smartindent        " use smart indent if there is no indent file
-    "set cindent
-    "set shiftround			" Round indent to multiple of 'shiftwidth, used for cindent, >>, <<, etc
 
     " Ignore these files when auto completing
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*    " for Linux/MacOSX
@@ -250,14 +262,16 @@
 
 " Singlecompile {
     nmap <F9> :SCCompileRun<cr>
+" }
+
+" Color Scheme {
     "let g:molokai_original = 1
-    set background=dark
     "set background=light
     "colorscheme molokai
     "colorscheme phd
     "color ir_black
     "colorscheme solarized
-    color deus
+    "color deus
     "color peaksea
     "color fruity
 " }
@@ -343,6 +357,24 @@
         """"""""""""" key map timeouts
         "set ttimeoutlen=100
     endif
+" }
+
+" c {
+    augroup ft_c
+        autocmd!
+        autocmd Filetype c setlocal cindent expandtab softtabstop=4 tabstop=4 shiftround shiftwidth=4
+        autocmd Filetype c setlocal
+        " autocmd Filetype c hi ColorColumn ctermbg=lightRed guibg=lightRed
+    augroup END
+" }
+
+" cpp {
+    augroup ft_cpp
+        autocmd!
+        autocmd Filetype cpp setlocal cindent expandtab softtabstop=4 tabstop=4 shiftround shiftwidth=4
+        autocmd Filetype cpp setlocal
+        " autocmd Filetype cpp hi ColorColumn ctermbg=lightRed guibg=lightRed
+    augroup END
 " }
 
 " Markdown {
