@@ -31,7 +31,7 @@
     "nmap <F9> :SCCompileRun<cr>
 
     " mileszs/ack.vim
-    " nnoremap <Leader>a :ack_cmd!<Space>
+    " nnoremap <Leader>a :Ack<Space>
 
     " for youcompleteme
     "let g:UltiSnipsExpandTrigger = '<C-j>'
@@ -42,7 +42,6 @@
     "smap <C-k> <Plug>(neosnippet_expand_or_jump)
     "close pupup
     "inoremap <expr><C-y> neocomplcache#close_popup()
-
 
     " Make it so AutoCloseTag works for xml and xhtml files as well
     "nmap <Leader>ac <Plug>ToggleAutoCloseMappings
@@ -281,21 +280,9 @@
 " }
 
 " mileszs/ack.vim {
-    if executable('ag')
-        let ack_cmd = 'ag %s --nocolor -l -g ""'
-    elseif executable('ack-grep')
-        let ack_cmd = 'ack-grep %s --nocolor -f'
-    elseif executable('ack')
-        let ack_cmd = 'ack %s --nocolor -f'
-    " On Windows use "dir" as fallback command.
-    elseif WINDOWS()
-        let ack_cmd = 'dir %s /-n /b /s /a-d'
-    else
-        let ack_cmd = 'find %s -type f'
-    endif
-
-    if executable('ack-grep') || executable('ack')
-        nnoremap <Leader>a :ack_cmd!<Space>
+    if executable('ack-grep') || executable('ack') || executable('ag')
+        cnoreabbrev Ack Ack!
+        nnoremap <Leader>a :Ack!<Space>
     endif
 " }
 
