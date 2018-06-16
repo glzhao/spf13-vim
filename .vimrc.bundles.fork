@@ -2,8 +2,6 @@ Bundle 'IndexedSearch'
 Bundle 'vim-scripts/VisIncr'
 Bundle 'TaskList.vim'
 
-Bundle 'jlanzarotta/bufexplorer'
-
 " Color schemes
     Bundle 'ajmwagar/vim-deus'
     Bundle 'tomasr/molokai'

@@ -12,6 +12,34 @@
     " nnoremap <silent> <D-t> :CtrlP<CR>
     " nnoremap <silent> <D-r> :CtrlPMRU<CR>
     " nnoremap <Leader>fu :CtrlPFunky<Cr>
+    " Easy bindings for its various modes
+    nmap <leader>bs :CtrlPBuffer<cr>
+    nmap <leader>ba :CtrlPMRU<cr>
+    nmap <leader>bm :CtrlPMixed<cr>
+
+    " To open a new empty buffer
+    " This replaces :tabnew which I used to bind to this mapping
+    nmap <leader>be :enew<cr>
+    " Move to the next buffer
+    nmap <leader>bn :bnext<CR>
+    " Move to the previous buffer
+    nmap <leader>bp :bprevious<CR>
+    " Move to the previous buffer
+    nmap <leader>bb :b #<CR>
+    " Close the current buffer and move to the previous one
+    " This replicates the idea of closing a tab
+    nmap <leader>bq :bp <BAR> bd #<CR>
+    " Show all open buffers and their status
+    nmap <leader>bl :ls<CR>
+
+    " airline
+    " nmap <leader>1 <Plug>AirlineSelectTab1
+    " nmap <leader>2 <Plug>AirlineSelectTab2
+    " ...
+    " nmap <leader>8 <Plug>AirlineSelectTab8
+    " nmap <leader>9 <Plug>AirlineSelectTab9
+    " nmap <leader>- <Plug>AirlineSelectPrevTab
+    " nmap <leader>+ <Plug>AirlineSelectNextTab
 
     " nerdtree
     " map <C-e> <plug>NERDTreeTabsToggle<CR>
@@ -102,16 +130,6 @@
     " nnoremap <silent> <leader>ge :Gedit<CR>
     " nnoremap <silent> <leader>gi :Git add -p %<CR>
     " nnoremap <silent> <leader>gg :SignifyToggle<CR>
-
-    " bufexplorer
-    "To start exploring in the current window, use: >
-    " <Leader>be   or   :BufExplorer   or   Your custom key mapping
-    "To toggle bufexplorer on or off in the current window, use: >
-    " <Leader>bt   or   :ToggleBufExplorer   or   Your custom key mapping
-    "To start exploring in a newly split horizontal window, use: >
-    " <Leader>bs   or   :BufExplorerHorizontalSplit   or   Your custom key mapping
-    "To start exploring in a newly split vertical window, use: >
-    " <Leader>bv   or   :BufExplorerVerticalSplit   or   Your custom key mapping
 
     " if count(g:spf13_bundle_groups, 'go')
     " au FileType go nmap <Leader>s <Plug>(go-implements)
@@ -275,6 +293,24 @@
     "color fruity
 " }
 
+" airline {
+    let g:airline#extensions#tabline#enabled = 1
+    " Show just the filename
+    let g:airline#extensions#tabline#fnamemod = ':t'
+    let g:airline#extensions#tabline#buffer_idx_mode = 1
+    nmap <leader>1 <Plug>AirlineSelectTab1
+    nmap <leader>2 <Plug>AirlineSelectTab2
+    nmap <leader>3 <Plug>AirlineSelectTab3
+    nmap <leader>4 <Plug>AirlineSelectTab4
+    nmap <leader>5 <Plug>AirlineSelectTab5
+    nmap <leader>6 <Plug>AirlineSelectTab6
+    nmap <leader>7 <Plug>AirlineSelectTab7
+    nmap <leader>8 <Plug>AirlineSelectTab8
+    nmap <leader>9 <Plug>AirlineSelectTab9
+    nmap <leader>- <Plug>AirlineSelectPrevTab
+    nmap <leader>+ <Plug>AirlineSelectNextTab
+" }
+
 " TaskList {
     map <silent>tl :TaskList<CR>
 " }
@@ -350,8 +386,6 @@
     augroup ft_c
         autocmd!
         autocmd Filetype c setlocal cindent expandtab softtabstop=4 tabstop=4 shiftround shiftwidth=4
-        autocmd Filetype c setlocal
-        " autocmd Filetype c hi ColorColumn ctermbg=lightRed guibg=lightRed
     augroup END
 " }
 
@@ -359,8 +393,6 @@
     augroup ft_cpp
         autocmd!
         autocmd Filetype cpp setlocal cindent expandtab softtabstop=4 tabstop=4 shiftround shiftwidth=4
-        autocmd Filetype cpp setlocal
-        " autocmd Filetype cpp hi ColorColumn ctermbg=lightRed guibg=lightRed
     augroup END
 " }
 
